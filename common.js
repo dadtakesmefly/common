@@ -27,4 +27,21 @@ window.onscroll= function(){
     console.log(h);
 }
 
-//
+
+//获取参数，根据获取url中的参数演化而来的,只需在str最前面插入一个"?"的字符串即可
+var str = "app_id=58game_sso_api&timestamp=1499749974000&sign=6dcdcd9a84cfe9a5bffab711005590c1"
+function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+    //这里是为测试给大家看的以下两行
+    //测试开始
+    var ur="?app_id=58game_sso_api&timestamp=1499749974000&sign=6dcdcd9a84cfe9a5bffab711005590c1"; //真实环境下删除
+    var r = ur.substr(1).match(reg);//真实环境下删除
+    //测试结束，
+    //真实环境下请用下面一句。
+    //var r = window.location.search.substr(1).match(reg); //真实环境请用这句
+    if (r!=null) return (r[2]); return null;
+}
+console.log("获取sign值为："+GetQueryString("sign")+"<br>");
+console.log("获取app_id值为："+GetQueryString("app_id")+"<br>");
+console.log("获取timestamp值为："+GetQueryString("timestamp"));
+
