@@ -53,3 +53,13 @@ document.write(str.lastIndexOf("/") + "<br />")
 var reg=/\d{1,10}\/\d{1,10}/;
 console.log(str.match(reg)[0]); //第一种
 console.log(str.slice("35"));//第二种
+
+ //动态设置option的选项
+ $("#investigatorSex option[value='"+data.sex+"']").attr("selected","selected")
+
+  //动态创建option的选项
+                for(var i=0;i<data.teamList.length;i++){
+                  var new_option = "<option value="+data.teamList[i].name+">"+data.teamList[i].name+"</option>";
+                    console.log(new_option);
+                    $("#teamName").append(new_option);
+                }
