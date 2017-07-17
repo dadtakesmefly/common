@@ -1,9 +1,9 @@
 /**
- * Created by ÍõÌÎ on 2017/7/12.
+ * Created by ç‹æ¶› on 2017/7/12.
  */
 
 
-//»Øµ½¶¥²¿
+//å›åˆ°é¡¶éƒ¨
 $(window).scroll(function(){
     var top= $(document).scrollTop();
     if(top<200){
@@ -17,31 +17,39 @@ $(".backtop").on('click', function() {
     $("html,body").animate({scrollTop:0}, 0);
 });
 
-//×Ô¶¯´¥·¢µã»÷ÊÂ¼ş
+//è‡ªåŠ¨è§¦å‘ç‚¹å‡»äº‹ä»¶
 $(".tabs ul li").eq(eq).trigger("click");
 
-//×Ô¶¯¼àÌı¹ö¶¯ÌõµÄ¸ß¶È
+//è‡ªåŠ¨ç›‘å¬æ»šåŠ¨æ¡çš„é«˜åº¦
 window.onscroll= function(){
-    //±äÁ¿tÊÇ¹ö¶¯Ìõ¹ö¶¯Ê±£¬¾àÀë¶¥²¿µÄ¾àÀë
+    //å˜é‡tæ˜¯æ»šåŠ¨æ¡æ»šåŠ¨æ—¶ï¼Œè·ç¦»é¡¶éƒ¨çš„è·ç¦»
     var h = document.documentElement.scrollTop||document.body.scrollTop;
     console.log(h);
 }
 
 
-//»ñÈ¡²ÎÊı£¬¸ù¾İ»ñÈ¡urlÖĞµÄ²ÎÊıÑİ»¯¶øÀ´µÄ,Ö»ĞèÔÚstr×îÇ°Ãæ²åÈëÒ»¸ö"?"µÄ×Ö·û´®¼´¿É
+//è·å–å‚æ•°ï¼Œæ ¹æ®è·å–urlä¸­çš„å‚æ•°æ¼”åŒ–è€Œæ¥çš„,åªéœ€åœ¨stræœ€å‰é¢æ’å…¥ä¸€ä¸ª"?"çš„å­—ç¬¦ä¸²å³å¯
 var str = "app_id=58game_sso_api&timestamp=1499749974000&sign=6dcdcd9a84cfe9a5bffab711005590c1"
 function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
-    //ÕâÀïÊÇÎª²âÊÔ¸ø´ó¼Ò¿´µÄÒÔÏÂÁ½ĞĞ
-    //²âÊÔ¿ªÊ¼
-    var ur="?app_id=58game_sso_api&timestamp=1499749974000&sign=6dcdcd9a84cfe9a5bffab711005590c1"; //ÕæÊµ»·¾³ÏÂÉ¾³ı
-    var r = ur.substr(1).match(reg);//ÕæÊµ»·¾³ÏÂÉ¾³ı
-    //²âÊÔ½áÊø£¬
-    //ÕæÊµ»·¾³ÏÂÇëÓÃÏÂÃæÒ»¾ä¡£
-    //var r = window.location.search.substr(1).match(reg); //ÕæÊµ»·¾³ÇëÓÃÕâ¾ä
+    //è¿™é‡Œæ˜¯ä¸ºæµ‹è¯•ç»™å¤§å®¶çœ‹çš„ä»¥ä¸‹ä¸¤è¡Œ
+    //æµ‹è¯•å¼€å§‹
+    var ur="?app_id=58game_sso_api&timestamp=1499749974000&sign=6dcdcd9a84cfe9a5bffab711005590c1"; //çœŸå®ç¯å¢ƒä¸‹åˆ é™¤
+    var r = ur.substr(1).match(reg);//çœŸå®ç¯å¢ƒä¸‹åˆ é™¤
+    //æµ‹è¯•ç»“æŸï¼Œ
+    //çœŸå®ç¯å¢ƒä¸‹è¯·ç”¨ä¸‹é¢ä¸€å¥ã€‚
+    //var r = window.location.search.substr(1).match(reg); //çœŸå®ç¯å¢ƒè¯·ç”¨è¿™å¥
     if (r!=null) return (r[2]); return null;
 }
-console.log("»ñÈ¡signÖµÎª£º"+GetQueryString("sign")+"<br>");
-console.log("»ñÈ¡app_idÖµÎª£º"+GetQueryString("app_id")+"<br>");
-console.log("»ñÈ¡timestampÖµÎª£º"+GetQueryString("timestamp"));
+console.log("è·å–signå€¼ä¸ºï¼š"+GetQueryString("sign")+"<br>");
+console.log("è·å–app_idå€¼ä¸ºï¼š"+GetQueryString("app_id")+"<br>");
+console.log("è·å–timestampå€¼ä¸ºï¼š"+GetQueryString("timestamp"));
 
+//æ­£åˆ™åŒ¹é…  1561/2235
+console.log(window.location.href);
+console.log(typeof window.location.href);
+var str="http://www.dqr2015.com/mood_detail/1561/2235"
+document.write(str.lastIndexOf("/") + "<br />")
+var reg=/\d{1,10}\/\d{1,10}/;
+console.log(str.match(reg)[0]); //ç¬¬ä¸€ç§
+console.log(str.slice("35"));//ç¬¬äºŒç§
