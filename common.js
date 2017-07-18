@@ -102,3 +102,17 @@ console.log(str.slice("35"));//第二种
        }
        tst()
 
+//判断ios还是安卓
+$(function () {
+    var u = navigator.userAgent, app = navigator.appVersion;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+    var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    if (isAndroid) {
+        alert("安卓机！")
+    }
+    if (isIOS) {
+        alert("苹果果机！")
+    }
+});
+
+
