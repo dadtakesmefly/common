@@ -72,7 +72,8 @@ userId:"Localhost_nuCoZOrUMIo0"
          $("#teamName").append(new_option);
      }
 
-//try catch
+ //js异常捕获之 try catch
+
       function tst()
        {
            try
@@ -109,7 +110,11 @@ userId:"Localhost_nuCoZOrUMIo0"
            }
        }
        tst()
+//异常捕获之 window.onerror
+    
 
+
+    
 //判断ios还是安卓
 $(function () {
     var u = navigator.userAgent, app = navigator.appVersion;
