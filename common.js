@@ -114,5 +114,22 @@ $(function () {
         alert("苹果果机！")
     }
 });
+//layer 嵌套iframe 依赖layer.js 和jq
+   layer.open({
+                type: 2,
+                title: '上传活动提议封面图',
+                shadeClose: true,
+                shade: false,
+                maxmin: false, //开启最大化最小化按钮
+                area: ['100%', '100%'],
+                content: './ima_up/index.html',
+            });
+//layer 弹层销毁后执行事件
+  layer.open({
+                skin:"demo-class",
+                title:"提示",
+                content:"报送成功",
+                end: function(){window.location.href="./index.html"}
+              });
 
-
+    
