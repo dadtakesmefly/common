@@ -56,8 +56,8 @@ console.log(str.slice("35"));//第二种
 
 //数据格式
 Object {phone: "18672774630", sex: "男", name: "熊继伟", teamList: Array(4), userId: "Localhost_nuCoZOrUMIo0"}
-name:"熊继伟"
-phone:"18672774630"
+name:"王某"
+phone:"13211112222"
 sex:"男"
 teamList:Array(4)
 userId:"Localhost_nuCoZOrUMIo0"
