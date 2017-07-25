@@ -145,4 +145,29 @@ $(function () {
                 end: function(){window.location.href="./index.html"}
               });
 
-    
+ //layer询问删除、确认层
+         layer.open({
+                    skin:"demo-class",
+                    content: '您确认提交？',
+                    btn: ['确认', '取消'],
+                    shadeClose: false,
+                    yes: function(){
+                        layer.open({content: '确认', time: 1});
+                        $.ajax({
+                            url:"http://192.168.31.248:7070/AXGY_OP/debug",
+                            type:"post",
+                            data:{"title":$(".title_top").val(),"src":$(".src").val(),"mark":str0,"data":str3},
+                            success: function (data) {
+                                console.log(data);
+                                layer.open({
+                                    skin:"demo-class",
+                                    title:"提示",
+                                    content:"提交成功"
+                                })
+                            }
+                        })
+
+                    }, no: function(){
+                        layer.open({content: '您选择了取消', time: 1});
+                    }
+                });
