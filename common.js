@@ -111,10 +111,15 @@ userId:"Localhost_nuCoZOrUMIo0"
        }
        tst()
 //异常捕获之 window.onerror
-    
+    window.onerror= function (e) {
+        if(e){
+            alert(e)
+        }
+    }
+    a();
 
 
-    
+   
 //判断ios还是安卓
 $(function () {
     var u = navigator.userAgent, app = navigator.appVersion;
