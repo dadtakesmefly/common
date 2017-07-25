@@ -72,7 +72,7 @@ userId:"Localhost_nuCoZOrUMIo0"
          $("#teamName").append(new_option);
      }
 
- //js异常捕获之 try catch
+ //js异常捕获之 try catch   可以判断该页面是在app内还是在app外，以便于执行不同的操作，前提条件需要安卓和ios写一个共同的js然后调用。
 
       function tst()
        {
