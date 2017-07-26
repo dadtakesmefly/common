@@ -176,3 +176,60 @@ $(function () {
                         layer.open({content: '您选择了取消', time: 1});
                     }
                 });
+
+
+//判断textarea输入框不为空
+function isTextAreaNull(){
+    var str=document.getElementById("desc").value.replace(/(^[\s\t\xa0\u3000]+)|([\u3000\xa0\s\t]+$)/g, "");
+    if(str==""){
+        layer.open({
+            skin:"demo-class",
+            title:"提示",
+            content:"输入错误",
+        })
+    }else{
+
+    }
+}
+
+//将base64的data:image/png;base64,前缀去掉
+    var data = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg..........."
+    var data = data.substring(data.indexOf(",") + 1)
+    
+ 
+//密码明文和密文之间的切换显示 即动态去改变input的输入类型
+    var img =document.querySelector("img");
+    var password = document.getElementById("password");
+    var btn =   document.querySelector("button");
+    console.log(img);
+    var isopen=true;
+    img.onclick= function () {
+
+        if(isopen){
+            this.src="images/eyesopen.png";
+            password.setAttribute("type","text")
+        }
+        else{
+            this.src="images/eyesclose.png";
+            password.setAttribute("type","password")
+        }
+        isopen=!isopen;
+    }
+    password.onblur= function () {
+
+        var val =this.value;
+        console.log(val);
+        var regchildname=/[\u4e00-\u9fa5]{1,}$/;
+        console.log(regchildname.test(val));
+        if(regchildname.test(val)){
+            layer.open({
+                skin:"demo-class",
+                title:"提示",
+                content:"请不要输入中文",
+            })
+            btn.disabled = "disabled"
+        }
+        else{
+            btn.disabled = false;
+        }
+    }
