@@ -178,6 +178,12 @@ $(function () {
                 });
 
 
+// layer 的iframe弹出后执行完某个操作后在关闭iframe 
+   
+        parent.layer.closeAll()
+
+
+
 //判断textarea输入框不为空
 function isTextAreaNull(){
     var str=document.getElementById("desc").value.replace(/(^[\s\t\xa0\u3000]+)|([\u3000\xa0\s\t]+$)/g, "");
