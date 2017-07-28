@@ -1,5 +1,5 @@
 /**
- * Created by 王涛 on 2017/7/12.
+ * Created by 王涛 on 2017/4/12.
  */
 
 
@@ -243,3 +243,6 @@ function isTextAreaNull(){
     
  //input框禁止输入空格
     <input type="text" name="userName" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;">
+
+ //判断多选框是否被选中
+     $('input[name="mark"]').is(':checked') 返回的是布尔值
