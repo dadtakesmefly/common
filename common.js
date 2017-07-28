@@ -239,3 +239,7 @@ function isTextAreaNull(){
             btn.disabled = false;
         }
     }
+    
+    
+ //input框禁止输入空格
+    <input type="text" name="userName" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;">
