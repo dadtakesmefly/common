@@ -181,7 +181,9 @@ $(function () {
 // layer 的iframe弹出后执行完某个操作后在关闭iframe 
    
         parent.layer.closeAll()
-
+// iframe 子操作父
+    
+   window.parent.$(".src").attr("value",data.data.url)
 
 
 //判断textarea输入框不为空
