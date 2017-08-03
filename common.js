@@ -248,3 +248,93 @@ function isTextAreaNull(){
 
  //判断多选框是否被选中
      $('input[name="mark"]').is(':checked') 返回的是布尔值
+
+  // H5 API 本地图片上传预览 获取图片的宽高  
+    $("li").on("click", function () {
+            var index = $(this).index();
+            console.log(index);
+            $(".file").eq(index).on("change", function () {
+                // 获取第一个文件信息
+                var fileData = this.files[0];
+                //读取图片数据
+                var reader = new FileReader();
+                reader.readAsDataURL(fileData);
+                reader.onload = function (e) {
+                    var data = e.target.result;
+                    //加载图片获取图片真实宽度和高度
+                    var image = new Image();
+                    image.onload=function(){
+                        var width = image.width;
+                        var height = image.height;
+                        console.log(width);
+                        console.log(height);
+                    };
+                    image.src= data;
+                    $("#editable li:eq("+(index)+")").find(".img").attr("src",this.result);
+                    var datas = data.substring(data.indexOf(",") + 1)
+                    $.ajax({
+                        url:"http://192.168.31.248:7070/AXGY_OP/uploadImage",
+                        data:{"image":datas,"fileName":"",},
+                        type:"post",
+                        success: function (data) {
+                            console.log(data);
+                            console.log(data.data.url);
+                            console.log(typeof data.data.url);
+                            $("#editable li:eq("+(index)+")").find(".img").attr("src",data.data.url);
+                        }
+                    })
+                };
+            })
+        })
+    
+   
+ // 拖拽排序 设置拖动区域 带删除        父元素id名   
+  var editableList = Sortable.create(editable, {
+            sort:"true",
+            animation: 150, 
+            handle: '.my-handle', //设置可拖拽区域 class类名
+            filter: '.js-remove', //删除class类名
+            onFilter: function (evt) {
+                var el = editableList.closest(evt.item); // get dragged item
+                el && el.parentNode.removeChild(el); //删除该行
+            }
+        });
+
+ //删除数组指定的内容的项
+    Array.prototype.indexOf = function (val) {
+        for(var i = 0; i < this.length; i++){
+            if(this[i] == val){return i;}
+        }
+        return -1;
+    }
+    Array.prototype.remove = function (val) {
+        var index = this.indexOf(val);
+        if(index > -1){this.splice(index,1);}
+    }
+    var arr= [1,2,3,4,5]
+    arr.remove(1);
+ 
+//删除数组中的undefined 项
+     var arr= [1,2,undefined,4,5,undefined];
+     var b = [];
+     for(var i=0;i<arr.length;i++){
+            if(typeof(arr[i])!='undefined'){
+                b.push(arr[i]);
+            }
+       }
+       console.log(b); [1,2,4,5]
+
+ //去重
+ //定义一个新的数组
+     var arr = [1,2,3,1,2,4,3]
+     var s = [];
+     //遍历数组
+      for(var i = 0;i<arr.length;i++){
+            if(s.indexOf(arr[i]) == -1){  //判断在s数组中是否存在，不存在则push到s数组中
+                s.push(arr[i]);
+            }
+       }
+        console.log(s) [1,2,3,4]
+
+
+    
