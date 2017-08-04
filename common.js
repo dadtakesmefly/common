@@ -296,7 +296,31 @@ function isTextAreaNull(){
             filter: '.js-remove', //删除class类名
             onFilter: function (evt) {
                 var el = editableList.closest(evt.item); // get dragged item
-                el && el.parentNode.removeChild(el); //删除该行
+                 //console.log(typeof el);
+                //console.log(evt.item);
+                //console.log(evt.item.children);
+                //console.log(evt.item.children[1]);
+                //console.log(evt.item.children[1].currentSrc);  //当前的图片路径
+                //console.log(evt.item.children[5].innerHTML);  //当前的文本内容
+                //删除时候判断该行有没有内容  有则提示是否确认删除 
+                if(evt.item.children[1].currentSrc != "" || evt.item.children[5].innerHTML != ""){
+                    layer.open({
+                        skin:"demo-class",
+                        content: '确认删除？',
+                        btn: ['确认', '取消'],
+                        shadeClose: false,
+                        yes: function(){
+                            layer.open({content: '确认', time: 1});
+                            el && el.parentNode.removeChild(el);  //删除该行
+                        }, no: function(){
+                            layer.open({content: '您选择了取消', time: 1});
+                        }
+                    })
+                }
+                //没有则直接删除  
+                else{ 
+                    el && el.parentNode.removeChild(el);  //删除该行
+                }
             }
         });
 
