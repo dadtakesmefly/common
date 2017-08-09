@@ -359,6 +359,24 @@ function isTextAreaNull(){
             }
        }
         console.log(s) [1,2,3,4]
-
-
+    
+ //tabs结构转化  .具体结构详见微信公众号里面的markdown
+    function tabstostring(data){
+        //先循环data对象
+        $.each(data, function (i,v) {
+            //先循环 然后再创建数组
+            var arr = [];
+            //再循环data对象的tabs
+            $.each(v.tabs,function(i,v){
+                //console.log(v.name);
+                //将标签名添加到数组里面
+                arr[i] = v.name ;
+            })
+            //数组转字符串用 " | " 连接
+            var str = arr.join(" | ");
+            // 替换原始数据的tabs内容
+            v.tabs = str
+        })
+        return data
+    }
     
