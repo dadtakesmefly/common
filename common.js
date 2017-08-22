@@ -379,4 +379,34 @@ function isTextAreaNull(){
         })
         return data
     }
-    
+   
+ //检测图片地址 是不是http开头的(七牛地址) 如果是表示图片上传成功 否则没有
+    function regSrc(){
+        var bool;
+        $.each( $(".hidden_data li:gt(0)").children("img"), function (i, v) {
+            console.log(i);
+            console.log(v);
+            console.log(v.src);
+            console.log(typeof v.src);
+            var reg =new RegExp("http");
+            for(var s=0;s<=i;s++){
+                if(reg.test(v.src)){
+                   bool =true;
+                }
+                else{
+                    bool =false;
+                }
+                console.log(bool);
+            }
+        })
+        return bool
+    }
+    bool =  regSrc();//调用 返回一个bool值
+    if( bool == false ){
+                layer.open({
+                    skin:"demo-class",
+                    title:"提示",
+                    content:"图片正在上传，请耐心等待"
+                })
+                return
+      }    
