@@ -410,3 +410,10 @@ function isTextAreaNull(){
                 })
                 return
       }    
+//去掉url中的参数
+function getDocumentUrl(){
+    return location.protocol+'//'+location.host+location.pathname;
+}
+var shareUrl = getDocumentUrl();
+
+
