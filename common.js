@@ -416,4 +416,42 @@ function getDocumentUrl(){
 }
 var shareUrl = getDocumentUrl();
 
+function GetQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);  //获取url中"?"符后的字符串并正则匹配
+                var context = "";
+                if (r != null)
+                    context = r[2];
+                reg = null;
+                r = null;
+                return context == null || context == "" || context == "undefined" ? "" : context;
+            }
+            //pc和手机浏览器获取userId
+            var userId=GetQueryString("userId");
+            //微信浏览器获取openid
+            var openid=GetQueryString("openid");
+        //手机打开，切到手机页面
+        var u = navigator.userAgent;
+        if(u.indexOf('Android') > -1 || u.indexOf('iPhone') > -1 || u.indexOf('iPad') > -1) {
+            //跳到手机链接
+            //手机端浏览器检查useid
+            //微信端检查openid
+                //微信浏览器
+                var ua = window.navigator.userAgent.toLowerCase();
+                if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+                   if(openid == ""){
+                       window.location.href = './login.html';
+                   }
+                }
+                //手机非微信浏览器
+                else if(userId == ""){
+                     window.location.href = './login.html';
+                }
+        }
+        //电脑端
+        else if (userId == ""){
+            window.location.href = './login.html';
+        }
+        else{
 
+        }
