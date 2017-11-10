@@ -460,3 +460,60 @@ function GetQueryString(name) {
     function Percentage(number1, number2) {
          return (Math.round(number1 / number2 * 10000) / 100.00 + "%");
      }
+
+  自调函数
+  downLoading: function (a, arr) {
+    //a表示的是第几张图片，arr表示剩下的图片数组；
+    var that = this;
+    //当数组的长度为0时，表示所有图片已经下载完
+    if (arr.length == 0) {
+      //下载完成后初始化数据
+      that.setData({
+        picList: that.resetList
+      })
+      wx.showModal({
+        title: '提示',
+        content: '下载完成',
+      })
+      return;
+    }
+    console.log(a);
+    const downloadTask = wx.downloadFile({
+      url: arr[0].poriginal, //仅为示例，并非真实的资源
+      success: function (res) {
+        // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+        console.log(res);
+        if (res.statusCode == 200) {
+          //保存图片到本地相册
+          wx.saveImageToPhotosAlbum({
+            filePath: res.tempFilePath,
+            success(res) {
+              console.log(res);
+              //删除数组中已下载的图片
+              arr.splice(0, 1);
+              //对应数组中的下标；
+              a++
+              that.downLoading(a, arr);
+            }
+          })
+        }
+      }
+    })
+    if (wx.canIUse("downloadTask.onProgressUpdate")) {
+      downloadTask.onProgressUpdate((res) => {
+        console.log('下载进度', res.progress);
+        //下载图片所对应的在picList中的位置
+        var num = that.tempArr[a].idx;
+        // 更新该图片的下载进度，
+        that.data.picList[num].progress = parseInt(res.progress);
+        //当下载进度为100时及下载完成，隐藏该图片的进度文字
+        if (res.progress == 100) {
+          that.data.picList[num].mengchen = false;
+        }
+        that.setData({
+          picList: that.data.picList
+        })
+      })
+    }
+  },
+
