@@ -543,3 +543,19 @@ function getCount(arr, rank, ranktype) {
   return arr1.slice(0, rank1);
 }
 
+
+//获取当前的日期
+    var today = new Date()
+    var year = today.getFullYear();
+    var month = today.getMonth() + 1;
+    var date = today.getDate()
+    month = (month < 10 ? "0" + month : month);
+    date = (date < 10 ? "0" + date : date);
+    var Today = year + "-" + month + "-" + date
+    //获取当前的时间
+    var hours = today.getHours(); 
+    var minutes = today.getMinutes();
+    hours = (hours < 10 ? "0" + hours : hours);
+    minutes = (minutes < 10 ? "0" + minutes : minutes);
+    var Time = hours + ":" + minutes
+    var DateTime = Today + " " + Time
