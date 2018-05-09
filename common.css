@@ -1,3 +1,5 @@
+
+//点击箭头旋转180度
 @keyframes tea_arrow {
     0%{transform: rotateZ(180deg);}
     25%{transform: rotateZ(135deg);}
@@ -12,6 +14,16 @@
     75%{transform: rotateZ(135deg);}
     100%{transform: rotateZ(180deg);}
 }
+.tea_arrowDown{
+    animation: tea_arrow 0.5s linear;
+    transform-origin:center center;
+    transform: rotateZ(0deg);
+}
+.tea_arrowUp{
+    animation: tea_arrow1 0.5s linear;
+    transform-origin:center center;
+    transform: rotateZ(180deg);
+}
 
-.tea_arrowDown{animation: tea_arrow 0.5s linear;transform-origin:center center;transform: rotateZ(0deg);}
-.tea_arrowUp{animation: tea_arrow1 0.5s linear;transform-origin:center center;transform: rotateZ(180deg);}
+
+
