@@ -28,15 +28,17 @@
 <div class="ellipsis">
     单行文本css溢出部分css溢出部分css溢出部分css溢出部分css溢出部分css溢出部分css溢出部分
 </div>
-//多行文本溢出
-.ellipsis{//单行文本溢出
+
+//单行文本溢出
+.ellipsis{
   overflow: hidden;
   text-overflow:ellipsis;//文本溢出显示省略号
   white-space:nowrap;//文本不会换行（单行文本溢出）
   width:130px;
   background-color: red;
 }
-.mult_line_ellipsis{//多行文本溢出
+//多行文本溢出
+.mult_line_ellipsis{
   overflow: hidden;
   text-overflow:ellipsis;//文本溢出显示省略号
   display: -webkit-box;
