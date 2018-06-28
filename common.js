@@ -591,3 +591,44 @@ function phoneSeparated(phoneNumber) {
 }
  
 phoneSeparated("18838869199")  // "188 3886 9199"
+
+  //输入手机号 变成 3 4 4 的格式
+  handlerPhoneInput:function(e){
+      var that = this 
+      console.log(e)
+      console.log(e.detail.value)
+      var newValue = e.detail.value  //实时监听 value
+      var oldValue = that.data.phone  //上一次的 value
+      console.log(oldValue)
+      //必须比较新旧的value 不然删不掉value值
+      if ((newValue.length > oldValue.length ) &&  (e.detail.value.length === 3 || e.detail.value.length === 8)) {
+        e.detail.value += " ";
+      }
+      that.setData({
+        phone: e.detail.value
+      })
+    
+      that.checkTel(e.detail.value)
+  },
+  //正则检验手机号
+  checkTel:function(val){
+    var that = this
+    //正则匹配手机号
+    if (!regPhoneNum.test(val.split(' ').join(''))) {
+      console.log("错误的手机号")
+      that.setData({
+        telReady: false
+      })
+     
+    } else {
+      console.log("正确的手机号")
+      that.setData({
+        telReady:true
+      })
+      
+    }
+  },
+
+//一行代码去掉所有的空格
+'  s tr in    g   '.split(' ').join('');
+
