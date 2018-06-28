@@ -559,3 +559,35 @@ function getCount(arr, rank, ranktype) {
     minutes = (minutes < 10 ? "0" + minutes : minutes);
     var Time = hours + ":" + minutes
     var DateTime = Today + " " + Time
+
+    
+  //去掉字符串最后一位
+ adress = adress.substr(0, adress.length - 1); 
+
+
+// 去掉字符串中所有空格(包括中间空格,需要设置第2个参数为:g)
+function trim(str, is_global) {
+  var result;
+  result = str.replace(/(^\s+)|(\s+$)/g, "");
+  if (is_global && is_global.toLowerCase() == "g") {
+    result = result.replace(/\s/g, "");
+  }
+  return result;
+}
+ 
+// 判断是否是手机号码格式
+function isPhone(str) {
+  var reg = /^1(3|4|5|7|8)\d{9}$/;
+  return reg.test(trim(str, 'g'));
+}
+ 
+// 手机号码格式转化为 344 格式 （188 3886 9199）
+function phoneSeparated(phoneNumber) {
+  let tel = trim(phoneNumber, 'g');
+  if (isPhone(tel)) {
+    tel = tel.substring(0, 3) + ' ' + tel.substring(3, 7) + ' ' + tel.substring(7, 11);
+  }
+  return tel;
+}
+ 
+phoneSeparated("18838869199")  // "188 3886 9199"
