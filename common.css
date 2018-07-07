@@ -49,3 +49,10 @@
 }
 
 
+.rotate{
+  animation: rotate 2s linear infinite
+}
+@keyframes rotate{
+from {transform:rotateZ(0);}
+to {transform:rotateZ(360deg);}
+}
