@@ -632,3 +632,5 @@ phoneSeparated("18838869199")  // "188 3886 9199"
 //一行代码去掉所有的空格
 '  s tr in    g   '.split(' ').join('');
 
+//去掉字符串最后一位
+ str = str.substr(0, str.length - 1); 
