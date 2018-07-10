@@ -7,17 +7,13 @@
    -    `var tempArr =  str.split(/[<br />,<br/>]/)  //按照多个参数进行分割`
 
 -  小程序button标签自带样式 初始化
-  -  
-      button{
-      
+  -  button{
           margin: 0;
           padding: 0;
           line-height: normal;
           background-color: transparent;
        }
-     
-     button::after
-     {
-     
+     button::after{
          content: none;
      }
+  
