@@ -634,3 +634,17 @@ phoneSeparated("18838869199")  // "188 3886 9199"
 
 //去掉字符串最后一位
  str = str.substr(0, str.length - 1); 
+
+ res.data.data.lists.forEach((val,i)=>{
+        console.log(val,i)
+        
+        val.employment_direction.split(',')
+        Object.assign(val,{
+          tagList: val.employment_direction.split(',')
+        })
+
+      })
+      that.setData({
+        total_num: res.data.data.total_num,
+        professionList: res.data.data.lists,
+      })
