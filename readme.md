@@ -26,3 +26,5 @@
          winheight: app.globalData.systemInfo.screenHeight-96,
        },
 
+ - swiper图片轮播  手机在微信进入后台  再重新打开的时候  这个轮播有时会出现卡顿、鬼畜的来回滑动
+   - autoplay 这个属性 默认设置 false  然后在 onHide里面设置为 false   onShow里面设置为true  
