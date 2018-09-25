@@ -1,8 +1,20 @@
 /**
  * Created by 王涛 on 2017/4/12.
  */
-
-
+//原生滚动
+ window.onscroll = function(){
+           var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+           console.log(scrollTop)
+           if( scrollTop >= 600 ) {
+               that.setState({
+                   fixShow:true,
+               })
+           } else {
+               that.setState({
+                   fixShow:false,
+               })
+           }
+        }
 //回到顶部
 $(window).scroll(function(){
     var top= $(document).scrollTop();
