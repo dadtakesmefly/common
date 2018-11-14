@@ -1,6 +1,12 @@
 /**
  * Created by 王涛 on 2017/4/12.
  */
+//生成随机整数
+
+parseInt(2 * Math.random())  //0-1
+parseInt(3 * Math.random())  //0-2
+parseInt(10 * Math.random())  //0-9
+
 //原生滚动
  window.onscroll = function(){
            var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
