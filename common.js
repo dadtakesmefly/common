@@ -666,3 +666,17 @@ phoneSeparated("18838869199")  // "188 3886 9199"
         total_num: res.data.data.total_num,
         professionList: res.data.data.lists,
       })
+
+var REG = /[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘’，。、]|[^\u0020-\u007E\u00A0-\u00BE\u2E80-\uA4CF\uF900-\uFAFF\uFE30-\uFE4F\uFF00-\uFFEF\u0080-\u009F\u2000-\u201f\u2026\u2022\u20ac\r\n]/gim;
+    if (!REG.test(e.detail.value.duty)){
+      if (typeof this._openSetcallback === 'function') {
+        this._openSetcallback();
+      }
+    }
+    else{
+      wx.showToast({
+        title: '请不要输入特殊符号',
+        icon:"none",
+      })
+    }
+
