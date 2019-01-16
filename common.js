@@ -680,3 +680,57 @@ var REG = /[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——
       })
     }
 
+删除数组 arr 第一个元素。不要直接修改数组 arr，结果返回新的数组
+第一种：：运用slice()的浅克隆去复制元素从第二个开始到最后一个
+
+function curtail(arr) {
+var m = arr.slice(1);
+    return m;
+}
+
+第二种：：splice()的删除功能
+function curtail(arr) {
+var m = arr.slice(0);
+    m.splice(0,1);
+    return m;
+}
+
+第三种：：filter过滤下标，返回满足不等0的下标的元素
+function curtail(arr) {
+    return arr.filter(function(ele,idx,arr){
+        return idx !== 0;
+    });
+}
+
+第四种：：shift()删除原数组的首个元素
+function curtail(arr) {
+var m = arr.slice(0);
+    m.shift();
+    return m;
+}
+
+第五种：：//join字符串连接后运用split进行分离为新数组
+function curtail(arr) {
+var m = arr.join().split(',');
+    m.shift();
+    return m;
+}
+
+第六种：：apply数组参数化后放入m数组
+function curtail(arr) {
+var m = [];
+    [].push.apply(m,arr);
+    m.shift();
+    return m;
+}
+
+第七种：：concat数组链接出新数组。
+function curtail(arr) {
+    var m = arr.concat();
+    m.shift();
+    return m;
+}
+
+
+
+
