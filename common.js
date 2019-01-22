@@ -731,6 +731,23 @@ function curtail(arr) {
     return m;
 }
 
+javascript如何在一个数组里随机选出不重复的10项
+第一种
+arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+arr.sort(function(){return 0.5-Math.random();}).slice(0,10);
 
+第二种
+var result = [];
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+
+var count = arr.length;
+for (var i = 0; i < 10; i++) {
+    var index = ~~(Math.random() * count) + i;
+    result[i] = arr[index];
+    arr[index] = arr[i];
+    count--;
+}
+
+console.log(result);
 
 
