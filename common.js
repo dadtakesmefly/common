@@ -749,5 +749,16 @@ for (var i = 0; i < 10; i++) {
 }
 
 console.log(result);
-
+原生触底加载更多
+ that.event.on(window, 'scroll', function () {
+                var scrollT = document.documentElement.scrollTop || document.body.scrollTop; //滚动条的垂直偏移
+                var scrollH = document.documentElement.scrollHeight || document.body.scrollHeight; //元素的整体高度
+                var clientH = document.documentElement.clientHeight || document.body.clientHeight; //元素的可见高度 
+                if (scrollT <= scrollH - clientH) {
+                    if (!that.state.loading) {
+                            that.state.page++;
+                            that.getDt(that.state.page, true);
+                    }
+                } 
+            });
 
