@@ -1,6 +1,13 @@
 /**
  * Created by 王涛 on 2017/4/12.
  */
+//js如何将小数保留一位且不实现四舍五入！
+function avg(a,b){
+     var res= parseInt((a/b)*10)/10;//保留两位、三位小数 同理
+     return res;
+}
+console.log(avg(2,3));//输出结果为0.6
+
 //生成随机整数
 
 parseInt(2 * Math.random())  //0-1
