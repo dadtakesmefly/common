@@ -4,9 +4,90 @@
 //js如何将小数保留一位且不实现四舍五入！
 function avg(a,b){
      var res= parseInt((a/b)*10)/10;//保留两位、三位小数 同理
+     if(String(res).indexOf('.') === -1){
+      res += ".0"
+     }
      return res;
 }
 console.log(avg(2,3));//输出结果为0.6
+
+
+
+  /**
+    * 初始化當前的起始位置
+    */
+  initLocation() {
+    var that = this
+    return new Promise((resolve, reject) => {
+      wx.getLocation({
+        type: 'wgs84',
+        success: (res) => {
+          console.log(res)
+          that.setData({
+            latitude: res.latitude,
+            longitude: res.longitude
+          })
+          resolve();
+        },
+        fail: (err) => {
+          wx.showModal({
+            title: '获取不到您的定位',
+            content: '允许使用您的定位，以获取准确的起点',
+            confirmText: '开启定位',
+            success: (res) => {
+              if (res.confirm) {
+                this.getAuthor().then(() => {
+                  resolve();
+                }).catch((err) => {
+                  reject(err);
+                });
+              } else {
+                reject();
+              }
+            }
+          });
+        }
+      });
+    });
+  },    
+  /**
+   * 进入首页提示获取允许获取地理权限的时候，用户点击了“否”
+   * 下次需要用到地理权限的时候，需要获取权限
+   */
+  getAuthor() {
+    return new Promise((resolve, reject) => {
+      // 获取到地理位置权限后，还需要重新初始化。
+      wx.getSetting({
+        success: (res) => {
+          if (!res.authSetting['scope.userLocation']) {
+            wx.openSetting({
+              success: (res) => {
+                if (!res.authSetting['scope.userLocation']) {
+                  wx.showModal({
+                    title: '获取不到您的定位',
+                    content: '允许使用您的定位，以获取准确的起点',
+                    confirmText: '开启定位',
+                    success: (res) => {
+                      if (res.confirm) {
+                        this.getAuthor();
+                      } else {
+                        reject('refuseLocation');
+                      }
+                    }
+                  });
+                } else {
+                  resolve();
+                  this.initLocation()
+                }
+              }
+            });
+          }
+        }
+      });
+    });
+  },
+
+
 
 //生成随机整数
 
