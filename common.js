@@ -850,3 +850,32 @@ console.log(result);
                 } 
             });
 
+
+
+
+     data :{
+      scrollTop: 0
+     },
+  //监听屏幕滚动 判断上下滚动
+  onPageScroll: function (ev) {
+    var _this = this;
+    //当滚动的top值最大或最小时，为什么要做这一步是因为在手机实测小程序的时候会发生滚动条回弹，所以为了处理回弹，设置默认最大最小值
+    if (ev.scrollTop <= 0) {
+      ev.scrollTop = 0;
+    } else if (ev.scrollTop > wx.getSystemInfoSync().windowHeight) {
+      ev.scrollTop = wx.getSystemInfoSync().windowHeight;
+    }
+    //判断浏览器滚动条上下滚动
+    if (ev.scrollTop > this.data.scrollTop || ev.scrollTop == wx.getSystemInfoSync().windowHeight) {
+      //向下滚动
+    } else {
+      //向上滚动
+    }
+    //给scrollTop重新赋值
+    setTimeout(function () {
+      _this.setData({
+        scrollTop: ev.scrollTop
+      })
+    }, 0)
+  }
+
