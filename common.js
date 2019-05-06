@@ -10,8 +10,33 @@ function avg(a,b){
      return res;
 }
 console.log(avg(2,3));//输出结果为0.6
-
-
+ * 输入：秒 
+ * 输出：时分秒 如100秒 00：01：40 
+function time_To_hhmmss(seconds){  
+    var hh;  
+    var mm;  
+    var ss;  
+      
+    if(seconds==null || seconds<=0){  
+        return "00:00:00";  
+    }  
+    hh = seconds/3600|0;  
+    seconds = parseInt(seconds)-hh*3600;  
+    if(parseInt(hh)<10){  
+        hh = "0"+hh;  
+    }  
+  
+  mm = seconds/60|0;  
+    
+  ss = parseInt(seconds)-mm*60;  
+  if(parseInt(mm)<10){  
+   mm = "0"+mm;  
+  }  
+  if(ss<10){  
+    ss = "0"+ss;  
+  }  
+  return hh+":"+mm+":"+ss;  
+}
 
   /**
     * 初始化當前的起始位置
