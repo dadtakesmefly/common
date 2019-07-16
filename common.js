@@ -1,6 +1,42 @@
 /**
  * Created by 王涛 on 2017/4/12.
  */
+
+
+
+ //判断数组里面 的每个值 出现了多少次 并且去重
+ let arr =  pages.map(item=>{
+            return item.route || [1,1,2,3,455,3,4]
+ })
+        console.log(arr)
+        var temp = [];
+        var obj = {};
+        var newArr = [];
+        for (var i = 0; i < arr.length; i++) {
+            var dt = arr[i];
+            if (obj[dt]) {
+                obj[dt]++;
+            } else {
+                temp.push(dt);
+                obj[dt] = 1;
+            }
+        }
+        console.log(temp);
+        for (const i in obj) {
+            newArr.push({
+                'name': i,
+                'value': obj[i]
+            })
+        }
+        console.log(newArr);
+
+
+
+
+  //js 去掉字符串前面的0
+  var s='002345';
+  alert(s.replace(/\b(0+)/gi,""));
+
 //js如何将小数保留一位且不实现四舍五入！
 function avg(a,b){
      var res= parseInt((a/b)*10)/10;//保留两位、三位小数 同理
@@ -521,386 +557,4 @@ function isTextAreaNull(){
             console.log(typeof v.src);
             var reg =new RegExp("http");
             for(var s=0;s<=i;s++){
-                if(reg.test(v.src)){
-                   bool =true;
-                }
-                else{
-                    bool =false;
-                }
-                console.log(bool);
-            }
-        })
-        return bool
-    }
-    bool =  regSrc();//调用 返回一个bool值
-    if( bool == false ){
-                layer.open({
-                    skin:"demo-class",
-                    title:"提示",
-                    content:"图片正在上传，请耐心等待"
-                })
-                return
-      }    
-//去掉url中的参数
-function getDocumentUrl(){
-    return location.protocol+'//'+location.host+location.pathname;
-}
-var shareUrl = getDocumentUrl();
-
-function GetQueryString(name) {
-                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-                var r = window.location.search.substr(1).match(reg);  //获取url中"?"符后的字符串并正则匹配
-                var context = "";
-                if (r != null)
-                    context = r[2];
-                reg = null;
-                r = null;
-                return context == null || context == "" || context == "undefined" ? "" : context;
-            }
-            //pc和手机浏览器获取userId
-            var userId=GetQueryString("userId");
-            //微信浏览器获取openid
-            var openid=GetQueryString("openid");
-        //手机打开，切到手机页面
-        var u = navigator.userAgent;
-        if(u.indexOf('Android') > -1 || u.indexOf('iPhone') > -1 || u.indexOf('iPad') > -1) {
-            //跳到手机链接
-            //手机端浏览器检查useid
-            //微信端检查openid
-                //微信浏览器
-                var ua = window.navigator.userAgent.toLowerCase();
-                if(ua.match(/MicroMessenger/i) == 'micromessenger'){
-                   if(openid == ""){
-                       window.location.href = './login.html';
-                   }
-                }
-                //手机非微信浏览器
-                else if(userId == ""){
-                     window.location.href = './login.html';
-                }
-        }
-        //电脑端
-        else if (userId == ""){
-            window.location.href = './login.html';
-        }
-        else{
-
-        }
-
-   // 小数点后两位百分比
-    function Percentage(number1, number2) {
-         return (Math.round(number1 / number2 * 10000) / 100.00 + "%");
-     }
-
-  自调函数
-  downLoading: function (a, arr) {
-    //a表示的是第几张图片，arr表示剩下的图片数组；
-    var that = this;
-    //当数组的长度为0时，表示所有图片已经下载完
-    if (arr.length == 0) {
-      //下载完成后初始化数据
-      that.setData({
-        picList: that.resetList
-      })
-      wx.showModal({
-        title: '提示',
-        content: '下载完成',
-      })
-      return;
-    }
-    console.log(a);
-    const downloadTask = wx.downloadFile({
-      url: arr[0].poriginal, //仅为示例，并非真实的资源
-      success: function (res) {
-        // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
-        console.log(res);
-        if (res.statusCode == 200) {
-          //保存图片到本地相册
-          wx.saveImageToPhotosAlbum({
-            filePath: res.tempFilePath,
-            success(res) {
-              console.log(res);
-              //删除数组中已下载的图片
-              arr.splice(0, 1);
-              //对应数组中的下标；
-              a++
-              that.downLoading(a, arr);
-            }
-          })
-        }
-      }
-    })
-    if (wx.canIUse("downloadTask.onProgressUpdate")) {
-      downloadTask.onProgressUpdate((res) => {
-        console.log('下载进度', res.progress);
-        //下载图片所对应的在picList中的位置
-        var num = that.tempArr[a].idx;
-        // 更新该图片的下载进度，
-        that.data.picList[num].progress = parseInt(res.progress);
-        //当下载进度为100时及下载完成，隐藏该图片的进度文字
-        if (res.progress == 100) {
-          that.data.picList[num].mengchen = false;
-        }
-        that.setData({
-          picList: that.data.picList
-        })
-      })
-    }
-  },
-      
-//js计算数组中元素出现的次数，并实现去重
-function getCount(arr, rank, ranktype) {
-  var obj = {}, k, arr1 = [];
-  for (var i = 0, len = arr.length; i < len; i++) {
-    k = arr[i];
-    if (obj[k])
-      obj[k]++;
-    else
-      obj[k] = 1;
-  }
-  //保存结果{el-'元素'，count-出现次数}
-  for (var o in obj) {
-    arr1.push({ el: o, count: obj[o] });
-  }
-  //排序（降序）
-  arr1.sort(function (n1, n2) {
-    return n2.count - n1.count
-  });
-  //如果ranktype为1，则为升序，反转数组
-  if (ranktype === 1) {
-    arr1 = arr1.reverse();
-  }
-  var rank1 = rank || arr1.length;
-  return arr1.slice(0, rank1);
-}
-
-
-//获取当前的日期
-    var today = new Date()
-    var year = today.getFullYear();
-    var month = today.getMonth() + 1;
-    var date = today.getDate()
-    month = (month < 10 ? "0" + month : month);
-    date = (date < 10 ? "0" + date : date);
-    var Today = year + "-" + month + "-" + date
-    //获取当前的时间
-    var hours = today.getHours(); 
-    var minutes = today.getMinutes();
-    hours = (hours < 10 ? "0" + hours : hours);
-    minutes = (minutes < 10 ? "0" + minutes : minutes);
-    var Time = hours + ":" + minutes
-    var DateTime = Today + " " + Time
-
-    
-  //去掉字符串最后一位
- adress = adress.substr(0, adress.length - 1); 
-
-
-// 去掉字符串中所有空格(包括中间空格,需要设置第2个参数为:g)
-function trim(str, is_global) {
-  var result;
-  result = str.replace(/(^\s+)|(\s+$)/g, "");
-  if (is_global && is_global.toLowerCase() == "g") {
-    result = result.replace(/\s/g, "");
-  }
-  return result;
-}
- 
-// 判断是否是手机号码格式
-function isPhone(str) {
-  var reg = /^1(3|4|5|7|8)\d{9}$/;
-  return reg.test(trim(str, 'g'));
-}
- 
-// 手机号码格式转化为 344 格式 （188 3886 9199）
-function phoneSeparated(phoneNumber) {
-  let tel = trim(phoneNumber, 'g');
-  if (isPhone(tel)) {
-    tel = tel.substring(0, 3) + ' ' + tel.substring(3, 7) + ' ' + tel.substring(7, 11);
-  }
-  return tel;
-}
- 
-phoneSeparated("18838869199")  // "188 3886 9199"
-
-  //输入手机号 变成 3 4 4 的格式
-  handlerPhoneInput:function(e){
-      var that = this 
-      console.log(e)
-      console.log(e.detail.value)
-      var newValue = e.detail.value  //实时监听 value
-      var oldValue = that.data.phone  //上一次的 value
-      console.log(oldValue)
-      //必须比较新旧的value 不然删不掉value值
-      if ((newValue.length > oldValue.length ) &&  (e.detail.value.length === 3 || e.detail.value.length === 8)) {
-        e.detail.value += " ";
-      }
-      that.setData({
-        phone: e.detail.value
-      })
-    
-      that.checkTel(e.detail.value)
-  },
-  //正则检验手机号
-  checkTel:function(val){
-    var that = this
-    //正则匹配手机号
-    if (!regPhoneNum.test(val.split(' ').join(''))) {
-      console.log("错误的手机号")
-      that.setData({
-        telReady: false
-      })
-     
-    } else {
-      console.log("正确的手机号")
-      that.setData({
-        telReady:true
-      })
-      
-    }
-  },
-
-//一行代码去掉所有的空格
-'  s tr in    g   '.split(' ').join('');
-
-//去掉字符串最后一位
- str = str.substr(0, str.length - 1); 
-
- res.data.data.lists.forEach((val,i)=>{
-        console.log(val,i)
-        
-        val.employment_direction.split(',')
-        Object.assign(val,{
-          tagList: val.employment_direction.split(',')
-        })
-
-      })
-      that.setData({
-        total_num: res.data.data.total_num,
-        professionList: res.data.data.lists,
-      })
-
-var REG = /[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘’，。、]|[^\u0020-\u007E\u00A0-\u00BE\u2E80-\uA4CF\uF900-\uFAFF\uFE30-\uFE4F\uFF00-\uFFEF\u0080-\u009F\u2000-\u201f\u2026\u2022\u20ac\r\n]/gim;
-    if (!REG.test(e.detail.value.duty)){
-      if (typeof this._openSetcallback === 'function') {
-        this._openSetcallback();
-      }
-    }
-    else{
-      wx.showToast({
-        title: '请不要输入特殊符号',
-        icon:"none",
-      })
-    }
-
-删除数组 arr 第一个元素。不要直接修改数组 arr，结果返回新的数组
-第一种：：运用slice()的浅克隆去复制元素从第二个开始到最后一个
-
-function curtail(arr) {
-var m = arr.slice(1);
-    return m;
-}
-
-第二种：：splice()的删除功能
-function curtail(arr) {
-var m = arr.slice(0);
-    m.splice(0,1);
-    return m;
-}
-
-第三种：：filter过滤下标，返回满足不等0的下标的元素
-function curtail(arr) {
-    return arr.filter(function(ele,idx,arr){
-        return idx !== 0;
-    });
-}
-
-第四种：：shift()删除原数组的首个元素
-function curtail(arr) {
-var m = arr.slice(0);
-    m.shift();
-    return m;
-}
-
-第五种：：//join字符串连接后运用split进行分离为新数组
-function curtail(arr) {
-var m = arr.join().split(',');
-    m.shift();
-    return m;
-}
-
-第六种：：apply数组参数化后放入m数组
-function curtail(arr) {
-var m = [];
-    [].push.apply(m,arr);
-    m.shift();
-    return m;
-}
-
-第七种：：concat数组链接出新数组。
-function curtail(arr) {
-    var m = arr.concat();
-    m.shift();
-    return m;
-}
-
-javascript如何在一个数组里随机选出不重复的10项
-第一种
-arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
-arr.sort(function(){return 0.5-Math.random();}).slice(0,10);
-
-第二种
-var result = [];
-var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-
-var count = arr.length;
-for (var i = 0; i < 10; i++) {
-    var index = ~~(Math.random() * count) + i;
-    result[i] = arr[index];
-    arr[index] = arr[i];
-    count--;
-}
-
-console.log(result);
-原生触底加载更多
- that.event.on(window, 'scroll', function () {
-                var scrollT = document.documentElement.scrollTop || document.body.scrollTop; //滚动条的垂直偏移
-                var scrollH = document.documentElement.scrollHeight || document.body.scrollHeight; //元素的整体高度
-                var clientH = document.documentElement.clientHeight || document.body.clientHeight; //元素的可见高度 
-                if (scrollT <= scrollH - clientH) {
-                    if (!that.state.loading) {
-                            that.state.page++;
-                            that.getDt(that.state.page, true);
-                    }
-                } 
-            });
-
-
-
-
-     data :{
-      scrollTop: 0
-     },
-  //监听屏幕滚动 判断上下滚动
-  onPageScroll: function (ev) {
-    var _this = this;
-    //当滚动的top值最大或最小时，为什么要做这一步是因为在手机实测小程序的时候会发生滚动条回弹，所以为了处理回弹，设置默认最大最小值
-    if (ev.scrollTop <= 0) {
-      ev.scrollTop = 0;
-    } else if (ev.scrollTop > wx.getSystemInfoSync().windowHeight) {
-      ev.scrollTop = wx.getSystemInfoSync().windowHeight;
-    }
-    //判断浏览器滚动条上下滚动
-    if (ev.scrollTop > this.data.scrollTop || ev.scrollTop == wx.getSystemInfoSync().windowHeight) {
-      //向下滚动
-    } else {
-      //向上滚动
-    }
-    //给scrollTop重新赋值
-    setTimeout(function () {
-      _this.setData({
-        scrollTop: ev.scrollTop
-      })
-    }, 0)
-  }
-
+                if(reg
