@@ -2,6 +2,24 @@
  * Created by 王涛 on 2017/4/12.
  */
 
+//批量创建 50 下拉选项  且去掉 0 
+
+var a = Array.from(new Array(51).keys()).slice(1).map(item=>{
+            return `${item}人`
+        }),
+// 如果计算金额 去掉 人  replace('人'，'') 
+    
+
+
+
+
+
+
+
+
+
+
+
 //js随机从数组中取出几个元素
 var a = [1,2,3,4,5,6,7,7,8,9,9,9,3]
 a.sort(function() {
