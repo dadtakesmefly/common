@@ -2,6 +2,41 @@
  * Created by 王涛 on 2017/4/12.
  */
 
+
+
+// 获取URL 指定参数  str是url ，name是参数名字
+function GetQueryString(str, name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = str.split('?')[1];
+    if (r) {
+        r = r.match(reg); //search,查询？后面的参数，并匹配正则
+    }
+    if (r != null) return unescape(r[2]);
+    return null;
+}
+
+// 批量删除url中的参数  name =  ['_at','openId']
+function funcUrlDel(url, name=[]) {
+    var baseUrl = url.split('?')[0] + '?'
+    var r1 = url.split('?')[1]
+    name.forEach((n,i)=>{
+        if (r1.includes(n)) {
+            var obj = {}
+            var arr = r1.split("&");
+            for (var i = 0; i < arr.length; i++) {
+                arr[i] = arr[i].split("=");
+                obj[arr[i][0]] = arr[i][1];
+            };
+            delete obj[n];
+            var url = JSON.stringify(obj).replace(/[\"\{\}]/g, "").replace(/\:/g, "=").replace(/\,/g, "&");
+            r1 = url
+        }; 
+    })
+    return baseUrl + r1
+   
+}
+
+
 //批量创建 50 下拉选项  且去掉 0 
 
 var a = Array.from(new Array(51).keys()).slice(1).map(item=>{
@@ -9,16 +44,6 @@ var a = Array.from(new Array(51).keys()).slice(1).map(item=>{
         }),
 // 如果计算金额 去掉 人  replace('人'，'') 
     
-
-
-
-
-
-
-
-
-
-
 
 //js随机从数组中取出几个元素
 var a = [1,2,3,4,5,6,7,7,8,9,9,9,3]
