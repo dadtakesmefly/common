@@ -4,6 +4,8 @@
 
 
 
+
+
 // 获取URL 指定参数  str是url ，name是参数名字
 function GetQueryString(str, name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -35,6 +37,29 @@ function funcUrlDel(url, name=[]) {
     return baseUrl + r1
    
 }
+
+cleanUrl = function () {
+        var shortUrl = '';
+        var cleanUrl = window.location.href;
+        var cleanUrlParams = getURLParams() || {};
+        var paramArray = ['_at','openId'];
+
+        
+            try {
+                for (var m = 0; m < paramArray.length; m++) {
+                    var keyItem = paramArray[m];
+                    delete cleanUrlParams[keyItem];
+                }
+
+                shortUrl = cleanUrl.replace(/\?.*/gi, '') + '?' + $.param(cleanUrlParams) + window.location.hash;
+            } catch (e) {
+                console.log(e)
+            }
+        
+
+        return shortUrl;
+
+    }
 
 
 //批量创建 50 下拉选项  且去掉 0 
