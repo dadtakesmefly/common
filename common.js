@@ -3,7 +3,10 @@
  */
 
 
-
+// 关于JS实现的4种数字千位符格式化，例如“10,000”
+function toThousands(num) {
+    return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
+}
 
 
 // 获取URL 指定参数  str是url ，name是参数名字
