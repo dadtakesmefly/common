@@ -8,6 +8,9 @@ function toThousands(num) {
     return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
 }
 
+(12345).toLocaleString()
+"12,345"
+
 
 // 获取URL 指定参数  str是url ，name是参数名字
 function GetQueryString(str, name) {
