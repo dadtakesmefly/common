@@ -8,8 +8,40 @@ function toThousands(num) {
     return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
 }
 
+
 (12345).toLocaleString()
 "12,345"
+
+function formatDate (oldDate, fmt) {  
+  let date = new Date()  
+  if (typeof oldDate === 'string' || typeof oldDate === 'number') {    
+    date = new Date(+oldDate)  
+  } else {    
+    date = oldDate  
+  }  
+if (/(y+)/.test(fmt)) {    
+  fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))  }  
+  let o = {    
+  'M+': date.getMonth() + 1,    
+  'd+': date.getDate(),    
+  'h+': date.getHours(),    
+  'm+': date.getMinutes(),    
+  's+': date.getSeconds()  }  
+  function padLeftZero (str) {    
+    return ('00' + str).substr(str.length)  
+  }  
+  for (let k in o) {    
+    if (new RegExp(`(${k})`).test(fmt)) {      
+      let str = o[k] + ''      
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str))    
+    }  
+  }  
+  return fmt
+}
+
+formatDate (1570615365740,'yyyy年MM月dd hh:mm:ss')
+formatDate (1570615365740,'yyyy年MM月dd')
+
 
 
 // 获取URL 指定参数  str是url ，name是参数名字
