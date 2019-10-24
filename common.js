@@ -9,6 +9,18 @@ function toThousands(num) {
 }
 
 
+ filterXSS: function (str) {
+        return str
+            .replace(/&/g, '&amp;')
+            .replace(/ /g, '&nbsp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/\r{0,}\n/g, '<br/>')
+    },
+
+
 (12345).toLocaleString()
 "12,345"
 
