@@ -8,6 +8,9 @@ function toThousands(num) {
     return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
 }
 
+// js 快速生成数组的方法
+var arr6 = Array.from({length:100}, (v,k) => k);
+console.log(arr6);
 
  filterXSS: function (str) {
         return str
