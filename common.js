@@ -11,6 +11,10 @@ function toThousands(num) {
 // js 快速生成数组的方法
 var arr6 = Array.from({length:100}, (v,k) => k);
 console.log(arr6);
+
+var arr7 = Array.from(Array(100), (v,k) =>k);
+console.log(arr7);
+
 var arr8 = new Array(100).keys();
 console.log(Array.from(arr8));
 
