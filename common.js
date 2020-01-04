@@ -38,6 +38,24 @@ console.log(Array.from(arr8));
 (12345).toLocaleString()
 "12,345"
 
+
+ // 递归自执行
+let length = [1,2,3,4,5].length 
+(function a(i) {
+    const query = wx.createSelectorQuery();
+    query.select(`#nav-list-${i}`).boundingClientRect(function(res) {
+        console.log(res)
+        length--;
+        if (length < 0) {
+
+        } 
+        else {
+            a(length)
+        }
+    }).exec()
+})();
+
+
 //防抖
 function debounce(func, wait) {
     let timeout;
