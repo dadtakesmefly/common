@@ -19,147 +19,140 @@
   
   
 
- - 视频固定定位会滑动 解决办法 小程序tab栏高度为96；
-
-       <scroll-view scroll-y style="height:{{winheight}}px;"><video></video> </scroll-view>
-       data: {
-         winheight: app.globalData.systemInfo.screenHeight-96,
-       },
-
- - swiper图片轮播  手机在微信进入后台  再重新打开的时候  这个轮播有时会出现卡顿、鬼畜的来回滑动
-   - autoplay 这个属性 默认设置 false  然后在 onHide里面设置为 false   onShow里面设置为true  
-   
- - 小程序 文字跑马灯
-   
-             <view>1 显示完后再显示</view>
-             <view class="example">
-               <view class="marquee_box">
-                 <view class="marquee_text" style="{{orientation}}:{{marqueeDistance}}px;font-size: {{size}}px;">
-                   {{text}}
-                 </view>
-               </view>
-             </view>
-             <view>2 出现白边后即显示</view>
-             <view class="example">
-              <view class="marquee_box">
-                 <view class="marquee_text" style="{{orientation}}:{{marqueeDistance2}}px;font-size: {{size}}px;">
-                  <text>{{text}}</text>
-                   <text wx:if="{{marquee2copy_status}}" style="margin-left:{{marquee2_margin}}px;">{{text}}</text>
-                </view>
-              </view>
-             </view> 
-             
-             
-      
-            .announcement {
-                color: #a0a0a0;
-                background: #fff0e3;
-                border-radius: 6rpx;
-                line-height: 66rpx;
-                height: 66rpx;
-            }
-            .announcement-context {
-                width: 580rpx;
-                /* 偏移出文本框的内容隐藏掉 */
-                overflow: hidden;
-            }
-            .announcement-text {
-                width: 570rpx;
-                /* 文字内容只做一行显示 */
-                white-space: nowrap;
-            }
-            .example {
-              display: block;
-              width: 100%;
-              height: 100rpx;
-            }
-
-            .marquee_box {
-              width: 100%;
-              position: relative;
-            }
-
-            .marquee_text {
-              white-space: nowrap;
-              position: absolute;
-              top: 0;
-            }
-      
-               
-                const App = getApp();
-                const Simple = App.Simple;
-      
-                Page({
-                  data: {
-                    text: '这是一条会滚动的文字滚来滚去的文字跑马灯',
-                    marqueePace: 1,//滚动速度
-                    marqueeDistance: 0,//初始滚动距离
-                    marqueeDistance2: 0,
-                    marquee2copy_status: false,
-                    marquee2_margin: 60,
-                    size: 14,
-                    orientation: 'left',//滚动方向
-                    interval: 20 // 时间间隔
-                  },
-                  onShow:function(){
-                    var vm = this;
-                    var length = vm.data.text.length * vm.data.size;//文字长度
-                    var windowWidth = wx.getSystemInfoSync().windowWidth;// 屏幕宽度
-                    vm.setData({
-                      length: length,
-                      windowWidth: windowWidth,
-                      marquee2_margin: length < windowWidth ? windowWidth - length : vm.data.marquee2_margin//当文字长度小于屏幕长度时，需要增加补白
-                    });
-                    vm.run1();// 水平一行字滚动完了再按照原来的方向滚动
-                    vm.run2();// 第一个字消失后立即从右边出现
+货拉拉
+总结
+旷视
+总结
+编程猫
+新东方
+中商慧明
+凤凰网
+富途
+58同城
+涂鸦智能
+美团闪购
+知乎
+快手
+作业帮
+顺丰
+京东
+tcl
+美团企平
 
 
-                  },
-                  //  显示完后再显示
-                  run1: function () {
-                    var vm = this;
-                    var interval = setInterval(function () {
-                      if (-vm.data.marqueeDistance < vm.data.length) {
-                        vm.setData({
-                          marqueeDistance: vm.data.marqueeDistance - vm.data.marqueePace,
-                        });
-                      } else {
-                        clearInterval(interval);
-                        vm.setData({
-                          marqueeDistance: vm.data.windowWidth
-                        });
-                        vm.run1();
-                      }
-                    }, vm.data.interval);
-                  },
-                  //  出现白边后即显示
-                  run2: function () {
-                    var vm = this;
-                    var interval = setInterval(function () {
-                      if (-vm.data.marqueeDistance2 < vm.data.length) {
-                        // 如果文字滚动到出现marquee2_margin=30px的白边，就接着显示
-                        vm.setData({
-                          marqueeDistance2: vm.data.marqueeDistance2 - vm.data.marqueePace,
-                          marquee2copy_status: vm.data.length + vm.data.marqueeDistance2 <= vm.data.windowWidth + vm.data.marquee2_margin,
-                        });
-                      } else {
-                        if (-vm.data.marqueeDistance2 >= vm.data.marquee2_margin) { // 当第二条文字滚动到最左边时
-                          vm.setData({
-                            marqueeDistance2: vm.data.marquee2_margin // 直接重新滚动
-                          });
-                          clearInterval(interval);
-                          vm.run2();
-                        } else {
-                          clearInterval(interval);
-                          vm.setData({
-                            marqueeDistance2: -vm.data.windowWidth
-                          });
-                          vm.run2();
-                        }
-                      }
-                    }, vm.data.interval);
-                  },
-                
-                })
+
+货拉拉
+css垂直居中，右边定宽左边铺满
+判断空对象
+http过程
+watch监听props变化
+公司内部npm发布系统
+总结
+自我介绍：项目经历/擅长的技术点/离职原因/未来规划。
+回答的太保守了，应该在回答问题的同时延申答案，充分展示自己的技术储备。比如回答promise的三种状态时，说下实现原理。回答用的的loader和plugin时怎么自己去写一个。
+
+旷视
+碰到哪些移动端兼容性问题
+不同浏览器内核有什么区别
+发布系统怎么做的
+总结
+没发挥好，不知道答案，就旧原则。不知道浏览器内核区别，就应该说说chrome内核
+
+编程猫
+函数组件如何保证状态连续性
+useEffect 不执行第一次
+组件报错白屏的处理(错误边界)
+redux 数据流
+thunk/saga 实现原理
+promise.all 的实现原理
+async awit为什么到下一步就能正常执行
+硬件加速会有什么问题，硬件加速的属性
+代码发布系统
+如何知道浏览器是否空闲
+
+新东方
+邮箱正则
+unmount的执行顺序
+错误边界
+
+中商慧明
+form组件
+单点登录
+浏览器缓存如何清理
+
+凤凰网
+fetch xhr
+自定义hooks
+axios封装
+上线流程
+
+富途
+五星好评组件
+http强缓存
+手写forEach
+性能监控系统
+
+58同城
+class组件的内存问题
+cookie、sessionStorage/localstorage
+index页面放哪里
+手写sort方法
+
+涂鸦智能
+ts泛型
+lazy/suspense 原理
+权限控制 链接
+
+美团闪购
+算法题 n次方
+this.setState
+虚拟dom的优点
+计算属性的原理
+技术选型
+
+知乎
+箭头函数的this问题
+etag相比较文件最后修改时间的优点
+变量提升的问题
+事件循环微任务遇到微任务
+node的事件循环
+webpack性能优化后的效果比对
+性能监控工具的具体比对：cdn还是npm包？执行时机？要注意的点？
+无埋点 全埋点
+
+快手
+rem适配问题，都用rem？iPad?
+微信内如何唤起app?
+手机号正则匹配
+redux数据流细节
+es5原型继承
+数组算法
+
+作业帮
+无头浏览器
+vue也可以做单向数据流
+context
+跨域在哪一层被拦截
+斐波拉且
+react 状态合并原理
+
+顺丰
+写dialog组件
+
+京东
+AMD require.js import区别 link
+npm包写公共逻辑用ts?
+请求头
+
+tcl
+import
+vue有哪些路由？区别 link
+vue的data在最快在哪个生命周期拿到
+
+美团企平
+redux 和 react-redux的区别 link
+this.state.a = 1;
+移动端300ms延时为什么
+移动端优化方案
   
         
